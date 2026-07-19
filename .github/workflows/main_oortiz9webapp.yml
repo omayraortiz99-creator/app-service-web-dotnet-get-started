@@ -49,12 +49,6 @@ jobs:
         with:
           name: ASP-app
       
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_D5C42EA820144EAEA79A9863D6D445A3 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CCA7E3C365B14133A0F40F8465884A84 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1B7B81F5D7BC49B7BD6D6B7AD88A1A59 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -62,5 +56,6 @@ jobs:
         with:
           app-name: 'oortiz9WebApp'
           slot-name: 'Production'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: .
           
